@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Middlewares;
-use App\Http\Controller\TarifController;
+use App\Http\Controllers\TarifController;
 
 $url = "App\http\Controllers";
 /*
