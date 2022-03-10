@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Middlewares;
+use App\Http\Controller\TarifController;
+
 $url = "App\http\Controllers";
 /*
 |--------------------------------------------------------------------------
@@ -42,14 +44,14 @@ route::post('/logout',$url."\AuthController@logout");
 
 // Tarif
 Route::middleware('role:admin')->group(function () {
-    route::get('/tarif',$url."\TarifController@index")->name('tarif');
+    route::get('/tarif',[TarifController::class, 'index'])->name('tarif');
 
     route::get('/addtarif',function(){
         return view('addtarif');
     })->name('addtarif');
 
-    route::post('/savetarif',$url."\TarifController@store")->name('savetarif');
-    route::get('/edittarif/{id}',$url."\TarifController@show")->name('edittarif');
-    route::post('/updatetarif/{id}',$url."\TarifController@update")->name('updatetarif');
-    route::get('/deletetarif/{id}',$url."\TarifController@destroy")->name('deletetarif');
+    route::post('/savetarif',[TarifController::class, 'store'])->name('savetarif');
+    route::get('/edittarif/{id}',[TarifController::class, 'show'])->name('edittarif');
+    route::post('/updatetarif/{id}',[TarifController::class, 'update'])->name('updatetarif');
+    route::get('/deletetarif/{id}',[TarifController::class, 'destroy'])->name('deletetarif');
     });
