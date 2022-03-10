@@ -41,15 +41,15 @@ route::post('/login',$url."\AuthController@login");
 route::post('/logout',$url."\AuthController@logout");
 
 // Tarif
-route::get('/tarif',$url."\TarifController@index")->middleware('role:admin')->name('tarif');
+Route::middleware('role:admin')->group(function () {
+    route::get('/tarif',$url."\TarifController@index")->name('tarif');
 
-route::get('/addtarif',function(){
-    return view('addtarif');
-})->middleware('role:admin')->name('addtarif');
+    route::get('/addtarif',function(){
+        return view('addtarif');
+    })->name('addtarif');
 
-route::post('/savetarif',$url."\TarifController@store")->middleware('role:admin')->name('savetarif');
-route::get('/edittarif/{id}',$url."\TarifController@show")->middleware('role:admin')->name('edittarif');
-route::post('/updatetarif/{id}',$url."\TarifController@update")->middleware('role:admin')->name('updatetarif');
-route::get('/deletetarif/{id}',$url."\TarifController@destroy")->middleware('role:admin')->name('deletetarif');
-
-
+    route::post('/savetarif',$url."\TarifController@store")->name('savetarif');
+    route::get('/edittarif/{id}',$url."\TarifController@show")->name('edittarif');
+    route::post('/updatetarif/{id}',$url."\TarifController@update")->name('updatetarif');
+    route::get('/deletetarif/{id}',$url."\TarifController@destroy")->name('deletetarif');
+    });
